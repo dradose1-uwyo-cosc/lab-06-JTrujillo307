@@ -1,12 +1,10 @@
-# Your Name Here
+# Jay Trujillo
 # UWYO COSC 1010
-# Submission Date
+# Submission Date: 8/16/24
 # Lab 06
-# Lab Section: 
+# Lab Section: 15
 # Sources, people worked with, help given to: 
-# your
-# comments
-# here
+# Jhett Carr
 
 
 random_string = """
@@ -84,17 +82,46 @@ print(len(random_string)) # Print out the size for reference
 #Will need to first declare a dictionary 
 
 # Output: each letter and its corresponding occurrence in alphabetical order
-
+Letters = {}
+for i in random_string:
+    if i in Letters:
+        Letters[i] += 1 
+    else:
+        Letters[i] = 1 
+for i, count in sorted(Letters.items()):
+    print(f"{i}: {count}")
 print("*"*75)
 # Output which letter occurred the most 
+most_freq = {}
+for i in random_string:
+    if i in most_freq:
+        most_freq[i] += 1
+    else:
+        most_freq[i] = 1
+res = max(most_freq, key = most_freq.get)
+print("The most occuring letter is : " + str(res))
 
-most_occurred = ""
-least_occurred = ""
-
-print(f"The letter that occurred the most is {most_occurred}")
 print("*"*75)
+
 # Output which letter occurred the least 
-print(f"The letter that occurred the most is {least_occurred}")
+min_freq = {}
+for i in random_string:
+    if i in min_freq:
+        min_freq[i] += 1
+    else:
+        min_freq[i] = 1 
+res = min(min_freq, key = min_freq.get)
+print("The least occuring letter is : " + str(res))
+
 print("*"*75)
 
 # Output what the percentage of the string each character is, again in alphabetical
+from collections import Counter
+
+chars = "".join(random_string)
+n_chars = len(chars)
+counter = Counter(chars)
+occ_pct = [(chars, occ / n_chars * 100) for chars, occ in counter.most_common()]
+for occ, pct in sorted(occ_pct, key = lambda x: x[0]):
+    print(occ, f"{pct:.2f}%")
+
